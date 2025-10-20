@@ -10,8 +10,40 @@
                     <div class="row align-items-center">
                         <div class="col-lg-2 col-md-3 col-4">
                             <div class="logo">
-                                <a href="index.html"><img src="{% static 'img/logo/logo.png' %}" alt=""></a>
+                                <a href="{% url 'menu.index' %}"><img src="{% static 'img/logo/logo.png' %}" alt=""></a>
                             </div>
+                        </div>
+                        <div class="offcanvas_menu">
+                            <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="canvas_open">
+                                        <a href="javascript:void(0)"><i class="icon-menu"></i></a>
+                                    </div>
+                                    <div class="offcanvas_menu_wrapper">
+                                        <div class="canvas_close">
+                                            <a href="javascript:void(0)"><i class="icon-x"></i></a>
+                                        </div>
+
+                                        <div id="menu" class="text-left ">
+                                            <ul class="offcanvas_main_menu">
+                                                <li class="menu-item-has-children active">
+                                                    <a href="{% url 'menu.index' %}">Главная</a>
+                                                </li>
+                                                <li class="menu-item-has-children">
+                                                    <a href="{% url 'menu.catalog' %}">Каталог</a>
+                                                </li>
+                                                </li>
+                                                <li class="menu-item-has-children">
+                                                    <a href="{%  url 'menu.posts' %}">Блог</a>
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         </div>
                         <div class="col-lg-6">
                             <!--main menu start-->

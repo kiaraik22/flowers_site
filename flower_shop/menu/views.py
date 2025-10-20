@@ -30,7 +30,7 @@ def catalog(request):
         flowers = flowers.filter(category__id=category_id)
 
     page = request.GET.get('page')
-    results = 3
+    results = 4
     paginator = Paginator(flowers, results)
 
     try:
