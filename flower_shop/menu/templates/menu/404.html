@@ -1,0 +1,30 @@
+{% extends 'menu/index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'menu/header_site.html' %}
+    <!--error section area start-->
+    <div class="error_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="error_form">
+                        <h1>404</h1>
+                        <h2>Упс! СТРАНИЦА НЕ НАЙДЕНА</h2>
+                        <p>Извините, но страница, которую вы ищете, не существует, была
+                            удалена, название изменено или временно недоступна.</p>
+                        <a href="{% url 'menu.index' %}">Вернуться на главную страницу</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--error section area end-->
+
+
+    {% include 'menu/order_form.html' %}
+
+
+{% endblock %}

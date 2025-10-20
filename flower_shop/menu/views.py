@@ -87,3 +87,6 @@ def order_flower(request):
             messages.error(request, 'Пожалуйста, заполните все обязательные поля.')
 
     return redirect('menu.catalog')
+
+def page_not_found(request, exception):
+    return render(request, template_name='menu/404.html', context={'title':"404"})

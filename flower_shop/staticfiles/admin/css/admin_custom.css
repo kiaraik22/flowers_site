@@ -1,67 +1,101 @@
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: #f8f6f2 !important;
+    color: #333333;
 }
 
-/* Шапка — нежно-зелёная (как листья) */
+/* Шапка — тёмно-зелёная */
 #header {
-    background-color: #88c9a1 !important; /* мягкий зелёный */
-    border-bottom: 3px solid #5d9973;
+    background-color: #3b514e !important; /* тёмный зелёно-серый */
+    border-bottom: 2px solid #212e2c;
 }
 
 #branding h1, #branding h1 a:link, #branding h1 a:visited {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    color: #f0e9d9 !important; /* тёплый кремовый */
+    text-shadow: none;
+    font-weight: 400;
+    font-size: 1.4rem;
 }
 
-/* Ссылки в шапке */
+/* Ссылки в шапке (выход, профиль) */
 #user-tools a {
-    color: #f8f4e3 !important;
+    color: #d4c8b0 !important;
+    text-decoration: none;
+}
+#user-tools a:hover {
+    color: #f0e9d9 !important;
+    text-decoration: underline;
 }
 
-/* Боковое меню — пастельный бежевый */
+/* Боковая панель (если используется) */
 #content-related {
-    background-color: #fdf6e3 !important;
-    border-right: 1px solid #e0d3c5;
+    background-color: #fdfcf9 !important;
+    border-right: 1px solid #e8e4da;
 }
 
-/* Кнопки и акценты — нежно-розовые (как цветы) */
+/* Кнопки — бордовые */
 .button, input[type="submit"], .submit-row input {
-    background-color: #f4a6b9 !important; /* розовый */
-    border: 1px solid #d98a9d !important;
-    color: white !important;
+    background-color: #7a3b4a !important; /* глубокий бордовый */
+    border: 1px solid #5a2b38 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 3px;
 }
 
 .button:hover, input[type="submit"]:hover {
-    background-color: #e87a90 !important;
+    background-color: #5d2d3a !important;
+    cursor: pointer;
 }
 
-/* Заголовки полей */
+/* Заголовки секций */
 .module h2, .module caption, .inline-group h2 {
-    background-color: #b8e0d2 !important; /* мятный */
-    color: #4a6b5f !important;
+    background-color: #e8e4da !important;
+    color: #283532 !important;
+    font-weight: 600;
+    border-bottom: 1px solid #d0c9b8;
 }
 
-/* Чётные строки в списках — очень светлый беж */
+/* Строки в списках */
 .row1 {
-    background-color: #fdf9f0 !important;
+    background-color: #fdfcf9 !important;
 }
-
-/* Нечётные — белые */
 .row2 {
     background-color: #ffffff !important;
 }
 
 /* Ссылки на объекты */
 a:link, a:visited {
-    color: #a66b8a; /* приглушённый розово-фиолетовый */
+    color: #070606 !important; /* бордовый */
+    text-decoration: none;
+}
+a:hover {
+    color: #5d2d3a !important;
+    text-decoration: underline;
 }
 
-a:hover {
-    color: #d45d79 !important;
+/* Поля ввода */
+input, textarea, select {
+    border: 1px solid #c8c2b5 !important;
+    background-color: #ffffff !important;
+    color: #333333 !important;
+}
+input:focus, textarea:focus {
+    border-color: #7a3b4a !important;
+    box-shadow: 0 0 0 2px rgba(122, 59, 74, 0.2);
 }
 
 /* Footer */
 #footer {
-    color: #8a9b8c !important;
+    color: #8a857a !important;
+    border-top: 1px solid #e8e4da;
+    background-color: #fdfcf9;
+}
+
+/* Сообщения (success, error) */
+ul.messagelist li {
+    background-color: #f0e9d9 !important;
+    color: #2c3e3b !important;
+    border-left: 4px solid #7a3b4a;
 }
