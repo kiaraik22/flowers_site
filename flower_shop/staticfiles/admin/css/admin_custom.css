@@ -1,0 +1,67 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Шапка — нежно-зелёная (как листья) */
+#header {
+    background-color: #88c9a1 !important; /* мягкий зелёный */
+    border-bottom: 3px solid #5d9973;
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Ссылки в шапке */
+#user-tools a {
+    color: #f8f4e3 !important;
+}
+
+/* Боковое меню — пастельный бежевый */
+#content-related {
+    background-color: #fdf6e3 !important;
+    border-right: 1px solid #e0d3c5;
+}
+
+/* Кнопки и акценты — нежно-розовые (как цветы) */
+.button, input[type="submit"], .submit-row input {
+    background-color: #f4a6b9 !important; /* розовый */
+    border: 1px solid #d98a9d !important;
+    color: white !important;
+}
+
+.button:hover, input[type="submit"]:hover {
+    background-color: #e87a90 !important;
+}
+
+/* Заголовки полей */
+.module h2, .module caption, .inline-group h2 {
+    background-color: #b8e0d2 !important; /* мятный */
+    color: #4a6b5f !important;
+}
+
+/* Чётные строки в списках — очень светлый беж */
+.row1 {
+    background-color: #fdf9f0 !important;
+}
+
+/* Нечётные — белые */
+.row2 {
+    background-color: #ffffff !important;
+}
+
+/* Ссылки на объекты */
+a:link, a:visited {
+    color: #a66b8a; /* приглушённый розово-фиолетовый */
+}
+
+a:hover {
+    color: #d45d79 !important;
+}
+
+/* Footer */
+#footer {
+    color: #8a9b8c !important;
+}

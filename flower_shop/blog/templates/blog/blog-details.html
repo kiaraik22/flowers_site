@@ -1,0 +1,124 @@
+{% extends 'menu/index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+   {% include 'menu/header_site.html' %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <h3>Блог</h3>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!--blog body area start-->
+    <div class="blog_details">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-12">
+                    <!--blog grid area start-->
+                    <div class="blog_wrapper blog_wrapper_details">
+
+                        <article class="single_blog">
+                            <figure>
+                                <div class="post_header">
+                                    <h3 class="post_title">{{ post.title }}</h3>
+                                    <div class="blog_meta">
+                                        <p>{{post.created}}</p>
+                                    </div>
+                                </div>
+                                <div class="blog_thumb">
+                                    {% if post.image %}
+                                    <a href="{% url 'post_detail' pk=post.pk %}"><img src="{{ post.image.url }}" alt=""></a>
+                                    {% else %}
+                                        <img src="{% static 'img/default.jpg' %}" alt="Нет изображения">
+                                    {% endif %}
+                                </div>
+                                <figcaption class="blog_content">
+                                    <div class="post_content">
+                                        {{post.content|safe }}
+                                    </div>
+                                    <div class="entry_content">
+
+
+
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </article>
+
+
+
+                        <div class="comments_box">
+                            <h3>Комментарии </h3>
+
+
+                            <div class="comment_list">
+                                {% for review in post.comments_set.all %}
+{#                                <div class="comment_thumb">#}
+{#                                    <img src="assets/img/blog/comment3.png.jpg" alt="">#}
+{#                                </div>#}
+                                <div class="comment_content" style="margin-bottom: 10px;">
+                                    <div class="comment_meta">
+                                        <h5><a href="{% url 'user_profile' review.owner.id %}">{{ review.owner.name }}</a></h5>
+                                        <span>{{ review.created }}</span>
+                                    </div>
+                                    <p>{{ review.content }}</p>
+
+                                </div>
+                            {% endfor %}
+                            </div>
+
+                        </div>
+
+                        {% if request.user.profile.id in project.reviewers %}
+                         <p>Вы уже оставили комментарий к посту</p>
+                        {% elif request.user.profile == project.owner %}
+                        
+
+                        {% elif request.user.is_authenticated %}
+                            <div class="comments_form">
+                                <h3>Оставить комментарий</h3>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in form %}
+                                        <div class="form__field">
+                                            <label>{{ field.label }}</label>
+                                            {{ field }}
+                                            {% if field.errors %}
+                                                <div class="error">{{ field.errors }}</div>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                    <button class="button" type="submit">Отправить</button>
+                                </form>
+                            </div>
+                        {% else %}
+                            <div class="comments_form">
+                                <p><a href="{% url 'login' %}">Войдите</a>, чтобы оставить комментарий.</p>
+                            </div>
+                        {% endif %}
+
+
+                        </div>
+
+                    </div>
+                    <!--blog grid area start-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

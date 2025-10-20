@@ -1,0 +1,228 @@
+{% extends 'menu/index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+            <div class="header_middle">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-3 col-4">
+                            <div class="logo">
+                                <a href="{% url 'menu.index' %}"><img src="{% static 'img/logo/logo.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-6 col-6">
+                            <div class="header_right_info">
+                                <div class="search_container">
+
+
+                                    <form method="get" action="{% url 'menu.catalog' %}">
+                                        <div class="hover_category">
+                                            <select class="select_option" name="category" id="categori1">
+                                                <option value="">Все Категории</option>
+                                                {% for cat in category %}
+                                                    <option value="{{ cat.id }}" {% if selected_category == cat.id %}selected{% endif %}>
+                                                        {{ cat.name }}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="search_box">
+                                            <input name="q"  value="{{ query }}">
+                                            <button type="submit"><i class="icon-search"></i></button>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+
+                                <div class="header_account_area">
+                                    <div class="header_account-list top_links">
+                                        <a href="{%  url 'register' %}"><i class="icon-users"></i></a>
+                                        <ul class="dropdown_links">
+                                            {% if request.user.is_authenticated %}
+                                            <li><a href="{%  url 'register' %}">Выход </a></li>
+                                            {% else %}
+
+                                        </ul>
+                                            {% endif %}
+                                    </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom sticky-header">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-6">
+                            <!--main menu start-->
+                            <div class="main_menu menu_position">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'menu.index' %}">Главная<i class="fa fa-angle-down"></i></a>
+                                        </li>
+                                        <li class="mega_items">
+                                            <a class="active" href="{% url 'menu.catalog' %}">Каталог<i
+                                                    class="fa fa-angle-down"></i>
+                                            </a>
+
+                                        </li>
+                                        <li><a href="{%  url 'menu.posts' %}">Блог<i class="fa fa-angle-down"></i></a>
+
+                                        </li>
+
+                                        <li><a href="contact.html"> Контакты </a></li>
+
+                                        {% if request.user.is_authenticated %}
+                                        <li>
+                                            <a href="{% url 'account' %}">Мой аккаунт</a>
+                                        </li>
+                                        {% endif %}
+
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!--main menu end-->
+                        </div>
+                        <div class="col-lg-3">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--header area end-->
+
+
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <h3>Каталог товаров</h3>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!--shop  area start-->
+    <div class="shop_area shop_fullwidth mt-100 mb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="row shop_wrapper grid_list">
+                        <div class="col-12 ">
+
+                            {% for flower in flowers %}
+                            <article class="single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        {% if flower.image %}
+                                        <a class="primary_img" href="{% url 'flower_details' pk=flower.pk %}">
+                                            <img src="{{ flower.image.url }}" alt="">
+                                        </a>
+                                        {% else %}
+                                            <img src="{% static 'img/no_img.png' %}" alt="Нет изображения">
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="product_content grid_content">
+                                        <div class="product_price_rating">
+                                            <h4 class="product_name"><a href="{% url 'flower_details' pk=flower.pk %}">{{ flower.name }}</a></h4>
+                                            <div class="price_box">
+                                                <span class="current_price">{{ flower.price }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product_content list_content">
+                                        <h4 class="product_name"><a href="{% url 'flower_details' pk=flower.pk %}">{{ flower.name }}</a>
+                                        </h4>
+                                        <div class="price_box">
+                                            <span class="current_price">{{ flower.price }}</span>
+                                        </div>
+                                        <div class="product_desc">
+                                            <p>{{ flower.description }}</p>
+                                        </div>
+                                        <div class="action_links list_action_right">
+                                            <ul>
+                                                <li class="add_to_cart">
+                                                    <a href="#"
+                                                       class="open-order-modal"
+                                                       data-flower-id="{{ flower.id }}"
+                                                       data-flower-name="{{ flower.name }}"
+                                                       title="Заказать">
+                                                        Заказать
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </article>
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                    <div class="shop_toolbar t_bottom" style="border-radius:20px">
+                        <div class="pagination">
+                            <ul>
+
+                                {% if flowers.has_previous %}
+                                    <li class="prev">
+                                        <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ flowers.previous_page_number }}">«</a>
+                                    </li>
+                                {% else %}
+                                    <li class="prev disabled"><span>«</span></li>
+                                {% endif %}
+
+                                {% for page_num in custom_range %}
+                                    {% if page_num == flowers.number %}
+                                        <li class="current">{{ page_num }}</li>
+                                    {% else %}
+                                        <li>
+                                            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_num }}">{{ page_num }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if flowers.has_next %}
+                                    <li class="next">
+                                        <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ flowers.next_page_number }}">»</a>
+                                    </li>
+                                {% else %}
+                                    <li class="next disabled"><span>»</span></li>
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--shop  area end-->
+
+
+
+    <!-- modal area start-->
+
+
+    {% include 'menu/order_form.html' %}
+    <!-- modal area end-->
+
+{% endblock %}

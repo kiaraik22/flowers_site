@@ -1,0 +1,123 @@
+
+{% extends 'menu/index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <!--offcanvas menu area start-->
+
+
+    <!--offcanvas menu area end-->
+        {% include 'menu/header_site.html' %}
+    <!--header area end-->
+
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <h3>Информация о Товаре</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!--product details start-->
+    <div class="product_details mt-100 mb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product-details-tab">
+                        <div class="product_thumb">
+                                        {% if flowers_d.image %}
+                                        <a class="primary_img" href="{% url 'flower_details' pk=flowers_d.pk %}">
+                                            <img src="{{ flowers_d.image.url }}" alt="">
+                                        </a>
+                                        {% else %}
+                                            <img src="{% static 'img/no_img.png' %}" alt="Нет изображения">
+                                        {% endif %}
+
+                                    </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product_d_right">
+                        <form action="#">
+
+                            <h1><a href="#">{{ flowers_d.name }}</a></h1>
+
+
+                            <div class="price_box">
+                                <span class="current_price">{{ flowers_d.price }}</span>
+
+
+                            </div>
+                            <div class="product_desc">
+                                <p>{{ flowers_d.description }} </p>
+                            </div>
+
+                            <div class="product_variant quantity">
+                                <button
+                                    type="button"
+                                    class="button open-order-modal"
+                                    data-flower-id="{{ flowers_d.id }}"
+                                    data-flower-name="{{ flowers_d.name }}">
+                                    Заказать
+                                </button>
+                            </div>
+                            
+                            <div class="product_meta">
+                                {% for cat in flowers_d.category.all %}
+                                <span>Категория: <a href="#">{{ cat }}</a></span>
+                                {% endfor %}
+                            </div>
+                            
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--product details end-->
+
+    <!--product info start-->
+    <div class="product_d_info mb-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="product_d_inner">
+                        <div class="product_info_button">
+                            <ul class="nav" role="tablist">
+                                <li>
+                                    <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info"
+                                        aria-selected="false">Описание</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                <div class="product_info_content">
+                                    <p>{{ flowers_d.description_detail|safe }}
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'menu/order_form.html' %}
+{% endblock %}

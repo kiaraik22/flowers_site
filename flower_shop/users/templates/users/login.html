@@ -1,0 +1,91 @@
+{% extends 'menu/index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <!--header area start-->
+
+    <!--offcanvas menu area start-->
+
+    {% include 'menu/header_site.html' %}
+    <!--header area end-->
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {% else %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {% endif %}
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <h3>Регистрация</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!-- customer login start -->
+
+
+    <div class="customer_login">
+        <div class="container" style="margin-right: 60px;margin-bottom: 50px;">
+
+
+                {% if page == 'register' %}
+
+                    <div class="col-lg-6 col-md-6">
+                    <div class="account_form register">
+                        <h2>Регистрация</h2>
+                        <form action="{% url 'register' %}" method="post">
+                            {% csrf_token %}
+                            {% for fild in form %}
+                            <label style="margin: 5px">{{ fild.label }} </label>
+                                {{ fild }}
+                            {% endfor %}
+                            <div class="login_submit">
+                                <a href="{%  url 'login' %}" class="btn">Уже есть аккаунт</a>
+                                <button type="submit" style="margin-top: 10px;">Зарегистрироваться</button>
+                            </div>
+
+                        </form>
+
+                </div>
+
+                {% else %}
+
+                <!--login area start-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="account_form">
+                        <h2>Авторизация</h2>
+                        <form action="{% url 'login' %}" method="post">
+                            {% csrf_token %}
+                            <p>
+                                <label>Login <span>*</span></label>
+                                <input type="text" name="username">
+                            </p>
+                            <p>
+                                <label>Пароль <span>*</span></label>
+                                <input type="password"  name="password">
+                            </p>
+                            <div class="login_submit">
+                                <a href="{%  url 'register' %}" class="btn">Зарегистрироваться</a>
+                                <button type="submit">Вход</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+
+
+{% load static %}
+
+{% block content %}
+
+
+
+{#    main_content    #}
+
+<div id="orderModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <form class="form" method="post" action="{% url 'order_flower' %}">
+            {% csrf_token %}
+        <input type="hidden" name="flower_id" id="flower-id-field">
+        <p>Заказ на цветок: <strong id="flower-name-display"></strong></p>
+            <div class="flex">
+
+                <label>
+                    <input required name="name" placeholder="Имя" type="text" class="input">
+
+                </label>
+                <label>
+                    <input required name="surname" placeholder="Фамилия" type="text" class="input">
+
+                </label>
+            </div>
+            <label>
+                <input required name="email" placeholder="email@example.com" type="email" class="input">
+
+            </label>
+            <label>
+                <input required name="phone_number" placeholder="+7 (999) 123-45-67" type="tel" class="input">
+
+            </label>
+            <label>
+                <textarea required name="message" rows="3" placeholder="Ваше сообщение..." class="input01"></textarea>
+
+            </label>
+            <button class="fancy" type="submit">
+                <span class="top-key"></span>
+                <span class="text">Отправить</span>
+                <span class="bottom-key-1"></span>
+                <span class="bottom-key-2"></span>
+            </button>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

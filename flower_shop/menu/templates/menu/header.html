@@ -1,0 +1,129 @@
+{% load static %}
+
+{% block content %}
+
+<!--offcanvas menu area end-->
+    <header>
+        <div class="main_header header_3 header_transparent sticky-header">
+            <div class="header_container">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-lg-2 col-md-3 col-4">
+                            <div class="logo">
+                                <a href="index.html"><img src="{% static 'img/logo/logo.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <!--main menu start-->
+                            <div class="main_menu menu_three menu_position">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a class="active" href="{% url 'menu.index' %}">Главная<i class="fa fa-angle-down"></i></a>
+                                        </li>
+                                        <li class="mega_items">
+                                            <a href="{% url 'menu.catalog' %}">Каталог<i class="fa fa-angle-down"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="{%  url 'menu.posts' %}">Блог<i class="fa fa-angle-down"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="contact.html">Контакты</a>
+                                        </li>
+                                        {% if request.user.is_authenticated %}
+                                        <li>
+                                            <a href="{% url 'account' %}">Мой аккаунт</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+
+
+                                </nav>
+                            </div>
+                            <!--main menu end-->
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-5 col-6">
+                            <div class="header_right_info header_right_two">
+
+                                <div class="header_account_area">
+                                    <div class="header_account-list top_links">
+                                        <a href="{%  url 'register' %}"><i class="icon-users"></i></a>
+                                        <ul class="dropdown_links">
+{#                                            <li><a href="{%  url 'register' %}">Вход </a></li>#}
+                                            {% if request.user.is_authenticated %}
+                                            <li><a href="{% url 'logout' %}" class="nav-link">Выход </a></li>
+                                            {% else %}
+
+                                        </ul>
+                                            {% endif %}
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--mini cart-->
+        <div class="mini_cart">
+            <div class="cart_gallery">
+                <div class="cart_close">
+                    <div class="cart_text">
+                        <h3>cart</h3>
+                    </div>
+                    <div class="mini_cart_close">
+                        <a href="javascript:void(0)"><i class="icon-x"></i></a>
+                    </div>
+                </div>
+                <div class="cart_item">
+                    <div class="cart_img">
+                        <a href="#"><img src="{% static 'img/s-product/product.jpg' %}" alt=""></a>
+                    </div>
+                    <div class="cart_info">
+                        <a href="#">Primis In Faucibus</a>
+                        <p>1 x <span> $65.00 </span></p>
+                    </div>
+                    <div class="cart_remove">
+                        <a href="#"><i class="icon-x"></i></a>
+                    </div>
+                </div>
+                <div class="cart_item">
+                    <div class="cart_img">
+                        <a href="#"><img src="{% static 'img/s-product/product2.jpg' %}" alt=""></a>
+                    </div>
+                    <div class="cart_info">
+                        <a href="#">Letraset Sheets</a>
+                        <p>1 x <span> $60.00 </span></p>
+                    </div>
+                    <div class="cart_remove">
+                        <a href="#"><i class="icon-x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mini_cart_table">
+                <div class="cart_table_border">
+                    <div class="cart_total">
+                        <span>Sub total:</span>
+                        <span class="price">$125.00</span>
+                    </div>
+                    <div class="cart_total mt-10">
+                        <span>total:</span>
+                        <span class="price">$125.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mini_cart_footer">
+                <div class="cart_button">
+                    <a href="cart.html"><i class="fa fa-shopping-cart"></i> View cart</a>
+                </div>
+                <div class="cart_button">
+                    <a class="active" href="checkout.html"><i class="fa fa-sign-in"></i> Checkout</a>
+                </div>
+
+            </div>
+        </div>
+        <!--mini cart end-->
+    </header>
+    <!--header area end-->
+{% endblock %}

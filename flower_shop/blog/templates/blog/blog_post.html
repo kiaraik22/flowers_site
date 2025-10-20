@@ -1,0 +1,113 @@
+{% extends 'menu/index.html' %}
+
+{% load static %}
+
+{% block content %}
+ <!--offcanvas menu area end-->
+
+ {% include 'menu/header_site.html' %}
+
+    <!--header area end-->
+
+
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <h3>Блог</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+
+
+
+
+    <!--blog area start-->
+    <div class="blog_page_section blog_fullwidth mt-100">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-9 col-md-12">
+
+                    <div class="blog_wrapper">
+
+                        {% for post in posts %}
+                            <article class="single_blog">
+                                <figure>
+                                    <div class="blog_thumb">
+                                        {% if post.image %}
+                                            <a href="{% url 'post_detail' pk=post.pk %}"><img src="{{ post.image.url }}"
+                                                                                              alt=""></a>
+                                        {% else %}
+                                            <img src="{% static 'img/default.jpg' %}" alt="Нет изображения">
+                                        {% endif %}
+                                    </div>
+                                    <figcaption class="blog_content">
+                                        <h4 class="post_title">
+                                            <a href="{% url 'post_detail' pk=post.pk %}"><i
+                                                    class="fa fa-paper-plane"></i>
+                                                {{ post.title }}
+                                            </a>
+                                        </h4>
+                                        <div class="blog_meta">
+                                            <p><a href="#">Дата создания</a> <a>{{ post.created }}</a></p>
+                                        </div>
+                                        <p class="post_desc">{{ post.content|safe|truncatechars:250 }}</p>
+                                        <footer class="btn_more" style="margin-bottom: 10px;">
+                                            <a href="{% url 'post_detail' pk=post.pk %}"> Читать </a>
+                                        </footer>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            <div class="shop_toolbar t_bottom" style="border-radius:20px">
+                        <div class="pagination" >
+                            <ul>
+                                <!-- Ссылка "Предыдущая" -->
+                                {% if posts.has_previous %}
+                                    <li class="prev">
+                                        <a href="?page={{ postss.previous_page_number }}">«</a>
+                                    </li>
+                                {% else %}
+                                    <li class="prev disabled">
+                                        <span>«</span>
+                                    </li>
+                                {% endif %}
+
+                                <!-- Номера страниц -->
+                                {% for page_num in custom_range %}
+                                    {% if page_num == posts.number %}
+                                        <li class="current">{{ page_num }}</li>
+                                    {% else %}
+                                        <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                <!-- Ссылка "Следующая" -->
+                                {% if posts.has_next %}
+                                    <li class="next">
+                                        <a href="?page={{ posts.next_page_number }}">»</a>
+                                    </li>
+                                {% else %}
+                                    <li class="next disabled">
+                                        <span>»</span>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+{% endblock %}
